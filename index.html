@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bộ Đề Ôn Tập Word</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 800px; margin: 20px auto; padding: 0 20px; background-color: #f4f4f9; }
+        h1 { text-align: center; color: #333; }
+        .question { background: #fff; margin-bottom: 25px; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .options { list-style-type: none; padding: 0; }
+        .options li { margin: 5px 0; padding: 10px; background: #eef; border-radius: 4px; }
+        .answer { color: #2e7d32; font-weight: bold; margin-top: 10px; padding: 10px; border: 1px solid #2e7d32; border-radius: 4px; background: #e8f5e9; }
+    </style>
+</head>
+<body>
+    <h1>Bộ Đề Ôn Tập Microsoft Word</h1>
+    <div id="quiz-container"></div>
+
+    <script>
+        const data = [{'id': 1, 'q': 'Trong Microsoft Word, khi đặt “password to modify” cho văn bản thì:', 'options': ['Được phép xem, chỉnh sửa văn bản, nhưng không cho lưu những kết quả đó trên file cũ', 'Không cho phép chỉnh sửa nội dung văn bản', 'Được phép thao tác trên văn bản, và được lưu kết quả bình thường', 'Không cho mở văn bản'], 'answer': 0}, {'id': 2, 'q': 'Trong Microsoft Word, khi đặt “password to modify” thì làm thế nào để xem được văn bản nếu không có mật khẩu', 'options': ['Khi mở văn bản có hiển thị khung nhỏ thì bấm vào nút “Read Only”', 'Khi mở văn bản có hiển thị khung nhỏ thì bấm Cancel', 'Khi mở văn bản có hiển thị khung nhỏ thì bấm Ok', 'Không thể mở được nếu không có mật khẩu'], 'answer': 0}, {'id': 3, 'q': 'Trong Microsoft Word, cho biết cách viền xung quanh trang bằng mẫu cây dừa', 'options': ['File/ Open/ chọn mẫu đường viền cây dừa', 'Design/ Document Formatting/Mục Art chọn mẫu đường viền cây dừa', 'Design/ Page Background/ Page Borders/Mục Art chọn mẫu đường viền cây dừa', 'Insert/ Text/ WorldArt/ chọn mẫu đường viền cây dừa'], 'answer': 2}, {'id': 4, 'q': 'Trong Microsoft Word, cách chọn màu đường viền xung quanh ký tự', 'options': ['Home/ Font/ Text Effect and Typography/Outline/ Chọn màu trong bảng màu', 'Home/ Font/ Text Effect and Typography/Glow', 'Home/ Font/ Text Effect and Typography/Reflection', 'Home/ Font/ Text Effect and Typography/Shadow'], 'answer': 0}, {'id': 5, 'q': 'Trong Microsoft Word, cách hủy màu đường viền xung quanh ký tự', 'options': ['Home/ Font/ Text Effect and Typography/Shadow', 'Home/ Font/ Text Effect and Typography/Glow', 'Home/ Font/ Text Effect and Typography/Reflection', 'Home/ Font/ Text Effect and Typography/Outline/ No Outline'], 'answer': 3}, {'id': 6, 'q': 'Trong Microsoft Word, cách tạo hiệu ứng bóng đổ cho ký tự', 'options': ['Home/ Font/ Text Effect and Typography/Reflection/Refection Variations/Chọn 1 mẫu thích hợp', 'Home/ Font/ Text Effect and Typography/Shadow/ Chọn mẫu phù hợp', 'Home/ Font/ Text Effect and Typography/Outline/ Chọn màu trong bảng màu', 'Home/ Font/ Text Effect and Typography/Glow'], 'answer': 1}, {'id': 7, 'q': 'Trong Microsoft Word, cách tạo hiệu ứng phản chiếu cho ký tự', 'options': ['Home/ Font/ Text Effect and Typography/Reflection/ Refection Variations/ Chọn một mẫu thích hợp', 'Home/ Font/ Text Effect and Typography/Outline/ Chọn màu trong bảng màu', 'Home/ Font/ Text Effect and Typography/Glow', 'Home/ Font/ Text Effect and Typography/Outline/ No Outline'], 'answer': 0}, {'id': 8, 'q': 'Trong Microsoft Word, phím tắt để chuyển kiểu in hoa/ thường là', 'options': ['ALT + F3', 'CTRL + F3', 'CTRL + SHIFT + F3', 'SHIFT + F3'], 'answer': 2}, {'id': 9, 'q': 'Trong Microsoft Word, phím tắt để ngắt cột theo ý muốn là gì', 'options': ['Alt + Enter', 'Ctrl + Shift + Enter', 'Ctrl + Enter', 'Shift + Enter'], 'answer': 3}, {'id': 12, 'q': 'Trong Microsoft Word, phím tắt để tăng kích cỡ chữ lên 2 đơn vị (từ kích thước 12 trở đi) là', 'options': ['CTRL + SHIFT + <', 'CTRL + SHIFT + >', 'CTRL + SHIFT + )', 'CTRL + SHIFT + ('], 'answer': 1}, {'id': 13, 'q': 'Trong Microsoft Word, phím tắt để giảm kích cỡ chữ xuống 2 đơn vị (đến kích thước 12) là', 'options': ['CTRL + SHIFT + (', 'CTRL + SHIFT + )', 'CTRL + SHIFT + >', 'CTRL + SHIFT + <'], 'answer': 0}, {'id': 14, 'q': 'Trong Microsoft Word, để thay đổi đơn vị đo trong Word ta thực hiện', 'options': ['View/ Show/ Ruler', 'Home/ Paragraph/ Indentation', 'File / Options/ Advanced/ Display/ Show mesurements in unit of', 'Page Layout/ Page Setup/ Margins'], 'answer': 2}];
+
+        const container = document.getElementById('quiz-container');
+        data.forEach((item, index) => {
+            let html = `<div class="question">
+                <p><strong>Câu ${item.id}: ${item.q}</strong></p>
+                <ul class="options">${item.options.map(opt => `<li>${opt}</li>`).join('')}</ul>
+                <div class="answer">Đáp án: ${item.options[item.answer]}</div>
+            </div>`;
+            container.innerHTML += html;
+        });
+    </script>
+</body>
+</html>
