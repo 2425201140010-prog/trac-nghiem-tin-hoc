@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trắc nghiệm Tin học - Phan 7</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: auto; background: #f9f9f9; }
+        .question { background: #fff; margin-bottom: 20px; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .ans-box { margin-top: 10px; padding: 10px; background: #e8f5e9; border-left: 4px solid #4caf50; display: none; font-weight: bold; color: #2e7d32; }
+        .incorrect-box { background: #ffebee; border-left: 4px solid #f44330; color: #c62828; }
+        button { background: #4CAF50; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; display: block; width: 100%; }
+        button:hover { background: #45a049; }
+        #result { font-size: 18px; font-weight: bold; margin-bottom: 20px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <h1>Trắc nghiệm Tin học - Phan 7</h1>
+    <div id="result"></div>
+    <div class="question" id="q-block-1">
+        <p><strong>Câu 1:</strong> Nhóm hiệu ứng Exit là nhóm:</p>
+        <label style="display:block; margin-bottom: 5px; cursor: pointer;">
+            <input type="radio" name="q1" value="A"> A. Hiệu ứng khi đối tượng biến mất khỏi slide
+        </label>
+        <label style="display:block; margin-bottom: 5px; cursor: pointer;">
+            <input type="radio" name="q1" value="B"> B. Hiệu ứng xuất hiện
+        </label>
+        <label style="display:block; margin-bottom: 5px; cursor: pointer;">
+            <input type="radio" name="q1" value="C"> C. Hiệu ứng chuyển động
+        </label>
+        <label style="display:block; margin-bottom: 5px; cursor: pointer;">
+            <input type="radio" name="q1" value="D"> D. Hiệu ứng nhấn mạnh
+        </label>
+        <div class="ans-box" id="ans-1" data-correct="A">Đáp án đúng: <strong>A</strong></div>
+    </div>
+    <div class="question" id="q-block-2">
+        <p><strong>Câu 2:</strong> Lệnh Crop hình ảnh trong PowerPoint dùng để:</p>
+        <label style="display:block; margin-bottom: 5px; cursor: pointer;">
+            <input type="radio" name="q2" value="A"> A. Cắt xén bớt phần thừa của hình ảnh
+        </label>
+        <label style="display:block; margin-bottom: 5px; cursor: pointer;">
+            <input type="radio" name="q2" value="B"> B. Phóng to hình
+        </label>
+        <label style="display:block; margin-bottom: 5px; cursor: pointer;">
+            <input type="radio" name="q2" value="C"> C. Thu nhỏ hình
+        </label>
+        <label style="display:block; margin-bottom: 5px; cursor: pointer;">
+            <input type="radio" name="q2" value="D"> D. Đổi màu hình
+        </label>
+        <div class="ans-box" id="ans-2" data-correct="A">Đáp án đúng: <strong>A</strong></div>
+    </div>
+    <div class="question" id="q-block-3">
+        <p><strong>Câu 3:</strong> Thiết kế slide chủ chứa định dạng chung (Slide Master):</p>
+        <label style="display:block; margin-bottom: 5px; cursor: pointer;">
+            <input type="radio" name="q3" value="A"> A. View / Slide Master
+        </label>
+        <label style="display:block; margin-bottom: 5px; cursor: pointer;">
+            <input type="radio" name="q3" value="B"> B. Insert / Slide Master
+        </label>
+        <label style="display:block; margin-bottom: 5px; cursor: pointer;">
+            <input type="radio" name="q3" value="C"> C. Design / Slide Master
+        </label>
+        <label style="display:block; margin-bottom: 5px; cursor: pointer;">
+            <input type="radio" name="q3" value="D"> D. Format / Slide Master
+        </label>
+        <div class="ans-box" id="ans-3" data-correct="A">Đáp án đúng: <strong>A</strong></div>
+    </div>
+    <button onclick="submitQuiz()">Nộp bài</button>
+
+    <script>
+        function submitQuiz() {
+            let total = 3;
+            let score = 0;
+            
+            for (let i = 1; i <= total; i++) {
+                let radios = document.getElementsByName('q' + i);
+                let selected = null;
+                for (let r of radios) {
+                    if (r.checked) {
+                        selected = r.value;
+                        break;
+                    }
+                }
+                
+                let ansBox = document.getElementById('ans-' + i);
+                let correctAns = ansBox.getAttribute('data-correct');
+                
+                ansBox.style.display = 'block';
+                if (selected === correctAns) {
+                    score++;
+                    ansBox.className = "ans-box";
+                    ansBox.innerHTML = "Chính xác! Đáp án đúng: <strong>" + correctAns + "</strong>";
+                } else {
+                    ansBox.className = "ans-box incorrect-box";
+                    ansBox.innerHTML = "Bạn chọn sai. Đáp án đúng chuẩn: <strong>" + correctAns + "</strong>";
+                }
+            }
+            
+            document.getElementById('result').innerHTML = "Kết quả của bạn: " + score + " / " + total + " câu đúng!";
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
